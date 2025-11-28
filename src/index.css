@@ -1,0 +1,136 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google font for headings & UI */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+/* Theme tokens */
+:root{
+  --neon-accent: #A259FF; /* chosen by you */
+  --neon-accent-glow: rgba(162,89,255,0.18);
+  --glass-1: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+  --bg-900: #0b0710;
+  --panel: rgba(12,9,16,0.6);
+  --muted: rgba(255,255,255,0.48);
+  --paper: #efe6dd;
+}
+
+/* base page look */
+html, body, #root {
+  height: 100%;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(162,89,255,0.06), transparent 6%),
+              linear-gradient(180deg, #06040a 0%, #0f0b13 100%);
+  color: rgba(255,255,255,0.95);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* small helper classes (non-tailwind) */
+.app-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* neon glow button */
+.btn-neon {
+  background: linear-gradient(90deg, var(--neon-accent), #8b4bff);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  box-shadow: 0 6px 30px rgba(162,89,255,0.12), inset 0 -2px 8px rgba(0,0,0,0.18);
+  transition: transform .16s cubic-bezier(.2,.9,.2,1), box-shadow .16s;
+}
+.btn-neon:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(162,89,255,0.18); }
+
+/* subtle glass secondary */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  transition: transform .14s;
+}
+.btn-ghost:hover { transform: translateY(-3px); color: #fff; border-color: rgba(162,89,255,0.18); }
+
+/* file drop styling */
+.file-drop {
+  border: 1px dashed rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(162,89,255,0.02), transparent);
+  border-radius: 14px;
+  padding: 2rem;
+}
+
+/* risky highlight (redline) */
+.risky {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+  padding: 1px 0;
+  border-radius: 3px;
+  box-shadow: 0 0 0 transparent;
+}
+.risky[data-risk="High"] { text-decoration-color: #ff6b6b; color: #ffecec; box-shadow: 0 6px 30px rgba(255,107,107,0.03); }
+.risky[data-risk="Medium"] { text-decoration-color: #ffba6b; color: #fff6ea; box-shadow: 0 6px 30px rgba(255,186,107,0.03); }
+
+/* replace flash animation when a clause is applied */
+.replace-flash {
+  animation: replaceFlash .9s ease forwards;
+}
+@keyframes replaceFlash {
+  0% { background: rgba(162,89,255,0.06); transform: translateY(0); }
+  33% { background: rgba(162,89,255,0.14); transform: translateY(-6px) scale(1.01); }
+  100% { background: transparent; transform: none; }
+}
+
+/* small fade-in-up utility */
+.fade-in-up { animation: fadeInUp .42s cubic-bezier(.2,.9,.2,1) both; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* preview container style */
+.preview-shell {
+  min-height: 60vh;
+  border-radius: 12px;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* history card hover */
+.history-item {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.history-item:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(0,0,0,0.6); }
+
+/* enhance pblock readability */
+.pblock {
+  margin: 0.6rem 0;
+  font-size: 15.5px;
+  line-height: 1.68;
+  color: rgba(255,255,255,0.94);
+}
+
+/* small utilities */
+.text-muted { color: rgba(255,255,255,0.55); font-size: 13px; }
+.kv { color: rgba(255,255,255,0.88); font-weight: 600; }
+
+/* ensure small interactive pulses for buttons */
+.pulse-on-hover:hover { box-shadow: 0 10px 40px rgba(162,89,255,0.12); transform: translateY(-3px); }
+
+/* keep tailwind utilities afterwards */
